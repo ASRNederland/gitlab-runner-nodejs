@@ -4,10 +4,15 @@ MAINTAINER Nick Hilhorst <nick.hilhorst@asr.nl>
 ARG NodeVersion=8.x
 
 RUN curl --silent --location https://rpm.nodesource.com/setup_${NodeVersion} | bash - && \
-    yum update -y && \
-    yum install -y nodejs && \
-    yum clean all
+    yum --enablerepo=extras install -y epel-release
 
-# NPM Zscaler proxy
-RUN npm config set strict-ssl false && \
-    npm config set registry https://registry.npmjs.org/
+RUN yum update -y && \
+    yum install -y \
+        gcc-c++ \
+        make \ 
+        wget \
+        which \
+        nodejs \
+        python-pip && \
+    yum clean all && \
+    rm -rf /var/cache/yum
