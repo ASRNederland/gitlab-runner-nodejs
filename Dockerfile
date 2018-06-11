@@ -16,3 +16,5 @@ RUN yum update -y && \
         python-pip && \
     yum clean all && \
     rm -rf /var/cache/yum
+
+COPY pip.conf /etc/
