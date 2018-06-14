@@ -13,8 +13,10 @@ RUN yum update -y && \
         wget \
         which \
         nodejs \
+        ca-certificates \
         python-pip && \
     yum clean all && \
+    update-ca-trust force-enable && \
     rm -rf /var/cache/yum
 
 COPY pip.conf /etc/
